@@ -195,65 +195,53 @@ export function Engagement() {
 }
 
 export function Work() {
-  const [feature, ...others] = work.items;
   return (
     <Section id="work">
       <Container>
         <SectionHead eyebrow={work.eyebrow} title={work.title} side={work.side} />
 
-        <div data-rise-group className="mt-14 grid gap-5 lg:grid-cols-12">
-          {feature ? <WorkCard item={feature} feature className="lg:col-span-7" /> : null}
-          <div className="grid gap-5 lg:col-span-5">
-            {others.map((item) => (
-              <WorkCard key={item.href} item={item} />
-            ))}
-          </div>
+        {/* Three cards of equal weight. An earlier asymmetric split stretched the
+            wide card to the height of the two stacked beside it, leaving dead
+            space under its copy — three items of uneven length do not carry a
+            feature layout. */}
+        <div data-rise-group className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {work.items.map((item) => (
+            <WorkCard key={item.href} item={item} />
+          ))}
         </div>
       </Container>
     </Section>
   );
 }
 
-function WorkCard({
-  item,
-  feature = false,
-  className = "",
-}: {
-  item: (typeof work.items)[number];
-  feature?: boolean;
-  className?: string;
-}) {
+function WorkCard({ item }: { item: (typeof work.items)[number] }) {
   return (
-    <article
-      className={`group flex flex-col overflow-hidden rounded-lg border border-line bg-white ${className}`}
-    >
-      <a href={item.href} target="_blank" rel="noopener noreferrer" className="flex h-full flex-col">
-        <div
-          className={`relative overflow-hidden bg-ink ${feature ? "aspect-[16/9]" : "aspect-[16/7]"}`}
-        >
+    <article className="group h-full overflow-hidden rounded-lg border border-line bg-white">
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex h-full flex-col"
+      >
+        <div className="relative aspect-[16/10] overflow-hidden bg-ink">
           <Image
             src={item.image}
             alt={`${item.title} — screenshot`}
             fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover object-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
           />
           <span className="absolute bottom-4 left-4 rounded-full bg-black/35 px-3 py-1 font-display text-[11px] font-semibold tracking-[0.04em] text-white backdrop-blur-sm">
             {item.tag}
           </span>
         </div>
-        <div className={`flex flex-1 flex-col p-6 ${feature ? "sm:p-8" : ""}`}>
-          <h3
-            className={`font-display font-semibold tracking-[-0.02em] ${
-              feature ? "text-[21px]" : "text-[17px]"
-            }`}
-          >
+        <div className="flex flex-1 flex-col p-6">
+          <h3 className="font-display text-[17px] font-semibold tracking-[-0.02em]">
             {item.title}
           </h3>
-          <p className="mt-2.5 max-w-[58ch] text-[13.5px] leading-relaxed text-ink-soft">
-            {item.body}
-          </p>
-          <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-accent-deep group-hover:underline">
+          <p className="mt-2.5 text-[13.5px] leading-relaxed text-ink-soft">{item.body}</p>
+          {/* Pushed down so the three links share a baseline whatever the copy does. */}
+          <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-[13px] font-semibold text-accent-deep group-hover:underline">
             {item.hrefLabel}
             <span className="[&_svg]:size-[13px]">{icons.arrowUpRight}</span>
           </span>
