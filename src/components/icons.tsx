@@ -108,11 +108,11 @@ export function Icon({ name, className }: { name: IconName; className?: string }
 }
 
 /**
- * An "A" whose legs are one mitred stroke and whose crossbar floats free of
- * both of them. The crossbar is the accent piece, and it is the part that turns
- * a bare chevron into a letter — the company's pitch is that it supplies the
- * piece a running team is missing. The float closes up below ~20px, which is
- * the intended degradation: the mark still reads as an A at favicon size.
+ * An "A" drawn as a single mitred stroke with its right leg broken in two. The
+ * detached lower segment is the accent piece: the company sells dropping
+ * engineers into a team that is already running, so the part that completes the
+ * letter is the part that gets added. The seam carries the whole idea, so it
+ * must stay wider than the stroke — thinning the stroke closes the mark up.
  */
 export function Mark({ className, mono = false }: { className?: string; mono?: boolean }) {
   return (
@@ -124,16 +124,16 @@ export function Mark({ className, mono = false }: { className?: string; mono?: b
       focusable="false"
     >
       <path
-        d="M4.5 20 12 4.5 19.5 20"
+        d="M4 20.5 12 4.5l3.4 6.8"
         stroke="currentColor"
         strokeWidth={2.4}
         strokeLinecap="square"
         strokeLinejoin="miter"
       />
       <path
-        d="M9.7 15h4.6"
+        d="m16.9 14.2 3.1 6.3"
         stroke="currentColor"
-        strokeWidth={2.6}
+        strokeWidth={2.4}
         strokeLinecap="square"
         className={mono ? undefined : "text-accent"}
       />
