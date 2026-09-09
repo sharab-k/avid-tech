@@ -12,12 +12,15 @@ import { icons } from "./icons";
 
 export function ClientStrip() {
   return (
-    <div className="border-b border-line bg-paper py-9">
-      <Container className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+    <div className="border-b border-line bg-paper py-11">
+      <Container className="flex flex-col gap-7 lg:flex-row lg:items-center lg:gap-12">
         <span className="shrink-0 text-[11px] font-semibold tracking-[0.14em] text-ink-soft uppercase">
           Trusted by teams at
         </span>
-        <ul data-rise-group className="no-scrollbar flex items-center gap-8 overflow-x-auto sm:gap-10">
+        <ul
+          data-rise-group
+          className="no-scrollbar flex flex-1 items-center gap-10 overflow-x-auto sm:justify-between sm:gap-12"
+        >
           {clients.map((c) => (
             <li key={c.name} className="shrink-0">
               <Image
@@ -48,7 +51,7 @@ export function Services() {
           {services.items.map((s, i) => (
             <li
               key={s.title}
-              className="group relative border-b border-line py-7 sm:border-r sm:px-6 sm:[&:nth-child(2n)]:border-r-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0"
+              className="group relative border-b border-line py-7 last:border-b-0 sm:border-r sm:px-6 sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-last-child(-n+3)]:border-b-0"
             >
               <span className="num absolute top-7 right-0 text-[11px] font-medium text-ink-soft/40 sm:right-6 lg:right-7">
                 {String(i + 1).padStart(2, "0")}
@@ -92,7 +95,7 @@ export function Industries() {
           {industries.items.map((ind, i) => (
             <li
               key={ind.name}
-              className="grid grid-cols-[auto_1fr] gap-x-5 border-b border-line py-7 sm:grid-cols-[3rem_1fr]"
+              className="grid grid-cols-[auto_1fr] gap-x-5 border-b border-line py-7 last:border-b-0 sm:grid-cols-[3rem_1fr] md:[&:nth-last-child(-n+2)]:border-b-0"
             >
               <span className="num pt-1 font-display text-[13px] font-medium text-accent-deep">
                 {String(i + 1).padStart(2, "0")}
@@ -196,7 +199,7 @@ export function Engagement() {
 
 export function Work() {
   return (
-    <Section id="work">
+    <Section id="work" flushTop>
       <Container>
         <SectionHead eyebrow={work.eyebrow} title={work.title} side={work.side} />
 
@@ -261,7 +264,7 @@ export function Why() {
           {why.items.map((w, i) => (
             <li
               key={w.title}
-              className="border-b border-line py-7 sm:border-r sm:px-6 sm:first:pl-0 sm:[&:nth-child(2n)]:border-r-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:last:border-r-0 lg:last:pr-0"
+              className="border-b border-line py-7 last:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:[&:nth-last-child(-n+4)]:border-b-0 lg:last:border-r-0 lg:last:pr-0"
             >
               <span className="num font-display text-[13px] font-medium text-accent-deep">
                 {String(i + 1).padStart(2, "0")}

@@ -30,7 +30,7 @@ export function Contact() {
   }
 
   return (
-    <Section id="contact" tone="dim">
+    <Section id="contact" tone="dim" flushTop>
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div data-rise className="lg:col-span-5">

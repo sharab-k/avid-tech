@@ -20,19 +20,27 @@ const toneClass: Record<Tone, string> = {
   dark: "dark-band bg-forest text-white",
 };
 
+/**
+ * `flushTop` drops the top padding. Two consecutive sections on the same
+ * background stack their vertical padding, which doubles the gap into a void
+ * with no change of colour to justify it; the second one opts out.
+ */
 export function Section({
   id,
   tone = "paper",
+  flushTop = false,
   children,
   className = "",
 }: {
   id?: string;
   tone?: Tone;
+  flushTop?: boolean;
   children: ReactNode;
   className?: string;
 }) {
+  const padding = flushTop ? "pb-20 sm:pb-24 lg:pb-32" : "py-20 sm:py-24 lg:py-32";
   return (
-    <section id={id} className={`${toneClass[tone]} py-20 sm:py-24 lg:py-32 ${className}`}>
+    <section id={id} className={`${toneClass[tone]} ${padding} ${className}`}>
       {children}
     </section>
   );

@@ -1,19 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Outfit } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
+/**
+ * Product Sans is Google's proprietary corporate typeface — not on Google Fonts
+ * and not licensed for third-party use. Outfit is the closest openly licensed
+ * match: the same geometric construction and single-storey "a". It now sets
+ * both display and body so the whole page reads in one voice.
+ */
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
   display: "swap",
-  weight: ["500", "600", "700"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -57,7 +57,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
+    <html lang="en" className={outfit.variable}>
       <body>
         {/* Runs before the page below it paints. The class it sets is what
             hides the animated elements, so it also schedules its own removal:
