@@ -39,6 +39,15 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  html.lenis-active {
+    height: auto;
+    scroll-behavior: auto;
+  }
+
+  html.lenis-active body {
+    height: auto;
+  }
+
   body {
     margin: 0;
     background: var(--color-paper);
@@ -271,18 +280,26 @@
 }
 
 @layer utilities {
-  /* Reveal is visible by default and only hidden once the inline head script
-     has confirmed JS is running, so no-JS and pre-hydration readers never get
-     a blank page. */
-  .reveal {
-    transition:
-      opacity 0.7s var(--ease-out-quint),
-      transform 0.7s var(--ease-out-quint);
+  /* Animated elements are visible by default. Only the inline script in the
+     layout hides them, by adding html.js, and GSAP tweens them back in. If the
+     script or GSAP never runs, the content simply stays where it is. */
+  html.js [data-hero-item],
+  html.js [data-rise],
+  html.js [data-rise-group] > * {
+    opacity: 0;
+    transform: translateY(18px);
+    will-change: opacity, transform;
   }
 
-  html.js .reveal:not(.is-visible) {
-    opacity: 0;
-    transform: translateY(14px);
+  .animate-panel {
+    animation: panel-in 0.45s var(--ease-out-quint) both;
+  }
+
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
   }
 
   .edge-fade {
@@ -316,7 +333,9 @@
     scroll-behavior: auto;
   }
 
-  html.js .reveal:not(.is-visible) {
+  html.js [data-hero-item],
+  html.js [data-rise],
+  html.js [data-rise-group] > * {
     opacity: 1;
     transform: none;
   }

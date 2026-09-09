@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="dark-band bg-ink pt-20 pb-8 text-white/55">
       <Container>
         <div className="grid gap-10 border-b border-white/10 pb-14 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+          <div data-rise className="lg:col-span-4">
             <a href="#top" className="flex items-center gap-2.5 text-white">
               <span className="flex size-7 shrink-0 items-center justify-center rounded-[8px] bg-white/10 text-white">
                 <Mark className="size-[18px]" />
@@ -28,7 +28,7 @@ export function SiteFooter() {
             </a>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:col-span-7 lg:col-start-6 lg:grid-cols-4">
+          <div data-rise-group className="grid gap-8 sm:grid-cols-2 lg:col-span-7 lg:col-start-6 lg:grid-cols-4">
             {footer.columns.map((col) => (
               <div key={col.title}>
                 <h2 className="text-[11px] font-semibold tracking-[0.14em] text-white/35 uppercase">

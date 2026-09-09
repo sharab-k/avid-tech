@@ -59,10 +59,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
       <body>
-        {/* Runs before the page below it paints: entrance animations only
-            exist when JS does, so no-JS readers get the content outright. */}
+        {/* Runs before the page below it paints. The class it sets is what
+            hides the animated elements, so it also schedules its own removal:
+            if the motion bundle never arrives, the content appears anyway. */}
         <script
-          dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add("js")` }}
+          dangerouslySetInnerHTML={{
+            __html:
+              'var d=document.documentElement;d.classList.add("js");' +
+              'window.__motionFallback=setTimeout(function(){d.classList.remove("js")},2500)',
+          }}
         />
         <a
           href="#main"

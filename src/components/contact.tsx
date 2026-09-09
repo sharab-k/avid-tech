@@ -32,7 +32,7 @@ export function Contact() {
     <Section id="contact" tone="dim">
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
+          <div data-rise className="lg:col-span-5">
             <span className="eyebrow">{contact.eyebrow}</span>
             <h2 className="title mt-4 max-w-[16ch]">{contact.title}</h2>
             <ul className="mt-9 flex flex-col divide-y divide-line border-y border-line">
@@ -50,7 +50,7 @@ export function Contact() {
             </ul>
           </div>
 
-          <div className="rounded-lg border border-line bg-white p-6 sm:p-9 lg:col-span-6 lg:col-start-7">
+          <div data-rise className="rounded-lg border border-line bg-white p-6 sm:p-9 lg:col-span-6 lg:col-start-7">
             {status === "sent" ? (
               <div role="status" className="py-12 text-center">
                 <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-accent-soft text-accent-deep [&_svg]:size-6">

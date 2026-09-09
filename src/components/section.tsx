@@ -57,12 +57,13 @@ export function SectionHead({
 }) {
   return (
     <header className={`grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10 ${className}`}>
-      <div className="lg:col-span-7">
+      <div data-rise className="lg:col-span-7">
         <span className={`eyebrow ${dark ? "eyebrow-dark" : ""}`}>{eyebrow}</span>
         <h2 className={`title mt-4 max-w-[16ch] ${dark ? "text-white" : ""}`}>{title}</h2>
       </div>
       {side ? (
         <p
+          data-rise
           className={`text-sm leading-relaxed lg:col-span-4 lg:col-start-9 ${
             dark ? "text-white/55" : "text-ink-soft"
           }`}

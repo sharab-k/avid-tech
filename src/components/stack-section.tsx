@@ -2,7 +2,7 @@ import Image from "next/image";
 import { stack } from "@/content/sections";
 import { stackGroups, tickerIcons, type StackIcon } from "@/content/stack";
 import { Container, Section } from "./section";
-import { StackTabs } from "./stack-tabs";
+import { StackScroller } from "./stack-scroller";
 import { icons } from "./icons";
 
 function Tile({ icon }: { icon: StackIcon }) {
@@ -32,20 +32,22 @@ function Tile({ icon }: { icon: StackIcon }) {
 }
 
 export function StackSection() {
+  const head = (
+    <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+      <div className="lg:col-span-7">
+        <span className="eyebrow eyebrow-dark">{stack.eyebrow}</span>
+        <h2 className="title mt-4 max-w-[18ch] text-white">{stack.title}</h2>
+      </div>
+      <p className="text-sm leading-relaxed text-white/55 lg:col-span-4 lg:col-start-9">
+        {stack.desc}
+      </p>
+    </div>
+  );
+
   return (
     <Section id="stack" tone="dark">
       <Container>
-        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <span className="eyebrow eyebrow-dark">{stack.eyebrow}</span>
-            <h2 className="title mt-4 max-w-[18ch] text-white">{stack.title}</h2>
-          </div>
-          <p className="text-sm leading-relaxed text-white/55 lg:col-span-4 lg:col-start-9">
-            {stack.desc}
-          </p>
-        </div>
-
-        <StackTabs tabs={stackGroups.map(({ id, label }) => ({ id, label }))}>
+        <StackScroller head={head} tabs={stackGroups.map(({ id, label }) => ({ id, label }))}>
           {stackGroups.map((group) => (
             <ul key={group.id} className="grid grid-cols-4 gap-3 sm:grid-cols-6 sm:gap-4">
               {group.icons.map((icon) => (
@@ -53,9 +55,12 @@ export function StackSection() {
               ))}
             </ul>
           ))}
-        </StackTabs>
+        </StackScroller>
 
-        <div className="mt-14 grid items-center gap-8 rounded-lg bg-paper p-8 text-ink sm:p-10 lg:grid-cols-12">
+        <div
+          data-rise
+          className="mt-20 grid items-center gap-8 rounded-lg bg-paper p-8 text-ink sm:p-10 lg:grid-cols-12"
+        >
           <div className="lg:col-span-6">
             <div className="flex items-center gap-5">
               <span className="num font-display text-[52px] leading-none font-semibold tracking-[-0.04em] text-accent-deep">

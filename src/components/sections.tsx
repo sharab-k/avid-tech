@@ -9,7 +9,6 @@ import {
 } from "@/content/sections";
 import { Container, Section, SectionHead } from "./section";
 import { icons } from "./icons";
-import { Reveal } from "./reveal";
 
 export function ClientStrip() {
   return (
@@ -18,7 +17,7 @@ export function ClientStrip() {
         <span className="shrink-0 text-[11px] font-semibold tracking-[0.14em] text-ink-soft uppercase">
           Trusted by teams at
         </span>
-        <ul className="no-scrollbar flex items-center gap-8 overflow-x-auto sm:gap-10">
+        <ul data-rise-group className="no-scrollbar flex items-center gap-8 overflow-x-auto sm:gap-10">
           {clients.map((c) => (
             <li key={c.name} className="shrink-0">
               <Image
@@ -44,12 +43,10 @@ export function Services() {
 
         {/* Hairline grid rather than nine free-floating cards: one shared rule
             system, so the section reads as a single table of capability. */}
-        <ul className="mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+        <ul data-rise-group className="mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-3">
           {services.items.map((s, i) => (
-            <Reveal
-              as="li"
+            <li
               key={s.title}
-              delay={i * 40}
               className="group relative border-b border-line py-7 sm:border-r sm:px-6 sm:[&:nth-child(2n)]:border-r-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0"
             >
               <span className="num absolute top-7 right-0 text-[11px] font-medium text-ink-soft/40 sm:right-6 lg:right-7">
@@ -64,11 +61,11 @@ export function Services() {
               <p className="mt-2 max-w-[38ch] text-[13.5px] leading-relaxed text-ink-soft">
                 {s.body}
               </p>
-            </Reveal>
+            </li>
           ))}
         </ul>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-5">
+        <div data-rise className="mt-10 flex flex-wrap items-center justify-between gap-5">
           <p className="text-sm text-ink-soft">{services.footNote}</p>
           <a href="#contact" className="btn btn-ghost">
             Get in touch
@@ -89,12 +86,10 @@ export function Industries() {
           side={industries.side}
         />
 
-        <ul className="mt-14 grid gap-x-12 border-t border-line md:grid-cols-2">
+        <ul data-rise-group className="mt-14 grid gap-x-12 border-t border-line md:grid-cols-2">
           {industries.items.map((ind, i) => (
-            <Reveal
-              as="li"
+            <li
               key={ind.name}
-              delay={(i % 2) * 60}
               className="grid grid-cols-[auto_1fr] gap-x-5 border-b border-line py-7 sm:grid-cols-[3rem_1fr]"
             >
               <span className="num pt-1 font-display text-[13px] font-medium text-accent-deep">
@@ -115,7 +110,7 @@ export function Industries() {
                   ))}
                 </ul>
               </div>
-            </Reveal>
+            </li>
           ))}
         </ul>
       </Container>
@@ -136,9 +131,9 @@ export function Engagement() {
 
         {/* Deliberately uneven: the lead model gets the wide, dark panel and the
             other two stack beside it, so the trio is not three identical boxes. */}
-        <div className="mt-14 grid gap-5 lg:grid-cols-12">
+        <div data-rise-group className="mt-14 grid gap-5 lg:grid-cols-12">
           {lead ? (
-            <Reveal className="dark-band flex flex-col rounded-lg bg-forest p-8 text-white lg:col-span-5 lg:p-10">
+            <div className="dark-band flex flex-col rounded-lg bg-forest p-8 text-white lg:col-span-5 lg:p-10">
               <span className="num font-display text-[13px] font-medium text-accent">
                 {lead.index} / {lead.kicker}
               </span>
@@ -158,14 +153,13 @@ export function Engagement() {
                   </li>
                 ))}
               </ul>
-            </Reveal>
+            </div>
           ) : null}
 
           <div className="grid gap-5 lg:col-span-7 lg:content-between">
-            {rest.map((m, i) => (
-              <Reveal
+            {rest.map((m) => (
+              <div
                 key={m.index}
-                delay={(i + 1) * 70}
                 className="rounded-lg border border-line bg-white p-8 lg:p-9"
               >
                 <div className="grid gap-6 sm:grid-cols-12 sm:gap-8">
@@ -189,7 +183,7 @@ export function Engagement() {
                     ))}
                   </ul>
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>
@@ -205,11 +199,11 @@ export function Work() {
       <Container>
         <SectionHead eyebrow={work.eyebrow} title={work.title} side={work.side} />
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-12">
+        <div data-rise-group className="mt-14 grid gap-5 lg:grid-cols-12">
           {feature ? <WorkCard item={feature} feature className="lg:col-span-7" /> : null}
           <div className="grid gap-5 lg:col-span-5">
-            {others.map((item, i) => (
-              <WorkCard key={item.href} item={item} delay={(i + 1) * 70} />
+            {others.map((item) => (
+              <WorkCard key={item.href} item={item} />
             ))}
           </div>
         </div>
@@ -221,18 +215,14 @@ export function Work() {
 function WorkCard({
   item,
   feature = false,
-  delay = 0,
   className = "",
 }: {
   item: (typeof work.items)[number];
   feature?: boolean;
-  delay?: number;
   className?: string;
 }) {
   return (
-    <Reveal
-      as="article"
-      delay={delay}
+    <article
       className={`group flex flex-col overflow-hidden rounded-lg border border-line bg-white ${className}`}
     >
       <a href={item.href} target="_blank" rel="noopener noreferrer" className="flex h-full flex-col">
@@ -267,7 +257,7 @@ function WorkCard({
           </span>
         </div>
       </a>
-    </Reveal>
+    </article>
   );
 }
 
@@ -276,12 +266,10 @@ export function Why() {
     <Section tone="dim">
       <Container>
         <SectionHead eyebrow={why.eyebrow} title={why.title} side={why.side} />
-        <ul className="mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+        <ul data-rise-group className="mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
           {why.items.map((w, i) => (
-            <Reveal
-              as="li"
+            <li
               key={w.title}
-              delay={i * 60}
               className="border-b border-line py-7 sm:border-r sm:px-6 sm:first:pl-0 sm:[&:nth-child(2n)]:border-r-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:last:border-r-0 lg:last:pr-0"
             >
               <span className="num font-display text-[13px] font-medium text-accent-deep">
@@ -291,7 +279,7 @@ export function Why() {
                 {w.title}
               </h3>
               <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">{w.body}</p>
-            </Reveal>
+            </li>
           ))}
         </ul>
       </Container>

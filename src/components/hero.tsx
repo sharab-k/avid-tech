@@ -4,15 +4,18 @@ import { icons, Star } from "./icons";
 
 export function Hero() {
   return (
-    <section id="top" className="dark-band relative isolate overflow-hidden bg-ink text-white">
-      <Image
-        src="/img/hero.webp"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center"
-      />
+    <section id="top" data-hero className="dark-band relative isolate overflow-hidden bg-ink text-white">
+      {/* Overscanned so the parallax never exposes an edge. */}
+      <div data-parallax className="absolute inset-0 scale-115">
+        <Image
+          src="/img/hero.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </div>
       {/* Hard-edged directional scrim instead of the stock radial colour blobs:
           the photograph stays legible on the right, the type keeps full contrast. */}
       <div
@@ -26,17 +29,17 @@ export function Hero() {
 
       <div className="relative mx-auto grid w-full max-w-[1180px] gap-14 px-5 pt-20 pb-20 sm:px-8 lg:grid-cols-12 lg:items-center lg:pt-28 lg:pb-28">
         <div className="lg:col-span-7">
-          <span className="eyebrow eyebrow-dark">{hero.eyebrow}</span>
-          <h1 className="display mt-5 text-[clamp(2.25rem,1.2rem+4.2vw,3.75rem)]">
+          <span data-hero-item className="eyebrow eyebrow-dark">{hero.eyebrow}</span>
+          <h1 data-hero-item className="display mt-5 text-[clamp(2.25rem,1.2rem+4.2vw,3.75rem)]">
             {hero.headline.before}
             <em className="not-italic text-magenta">{hero.headline.accent}</em>
             {hero.headline.after}
           </h1>
-          <p className="mt-6 max-w-[46ch] text-[16.5px] leading-[1.65] text-white/65">
+          <p data-hero-item className="mt-6 max-w-[46ch] text-[16.5px] leading-[1.65] text-white/65">
             {hero.lead}
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div data-hero-item className="mt-9 flex flex-wrap gap-3">
             <a href="#contact" className="btn btn-primary">
               Start a Project
               {icons.arrowRight}
@@ -46,7 +49,7 @@ export function Hero() {
             </a>
           </div>
 
-          <div className="mt-11 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div data-hero-item className="mt-11 flex flex-wrap items-center gap-x-4 gap-y-2">
             <span className="flex gap-0.5 text-accent" aria-hidden="true">
               {Array.from({ length: 5 }, (_, i) => (
                 <Star key={i} className="size-[15px]" />
@@ -59,7 +62,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 lg:col-start-9">
+        <div data-hero-item className="lg:col-span-5 lg:col-start-9">
           <div className="rounded-lg border border-white/10 bg-white/[0.045] p-6 backdrop-blur-[6px] sm:p-7">
             <dl>
               {hero.intake.map((row) => (

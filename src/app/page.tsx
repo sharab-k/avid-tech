@@ -1,5 +1,7 @@
 import { Contact } from "@/components/contact";
 import { Hero } from "@/components/hero";
+import { ScrollMotion } from "@/components/scroll-motion";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StackSection } from "@/components/stack-section";
@@ -39,6 +41,8 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <SmoothScroll />
+      <ScrollMotion />
       <SiteHeader />
       <main id="main">
         <Hero />
