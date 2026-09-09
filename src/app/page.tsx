@@ -2,6 +2,7 @@ import { Contact } from "@/components/contact";
 import { Hero } from "@/components/hero";
 import { ScrollMotion } from "@/components/scroll-motion";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { MotionProvider } from "@/components/motion-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StackSection } from "@/components/stack-section";
@@ -43,6 +44,7 @@ export default function HomePage() {
       />
       <SmoothScroll />
       <ScrollMotion />
+      <MotionProvider>
       <SiteHeader />
       <main id="main">
         <Hero />
@@ -57,6 +59,7 @@ export default function HomePage() {
         <Contact />
       </main>
       <SiteFooter />
+      </MotionProvider>
     </>
   );
 }

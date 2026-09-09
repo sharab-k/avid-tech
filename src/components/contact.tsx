@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { AnimatePresence, m } from "motion/react";
 import { contact } from "@/content/sections";
 import { Container, Section } from "./section";
 import { icons } from "./icons";
@@ -51,8 +52,15 @@ export function Contact() {
           </div>
 
           <div data-rise className="rounded-lg border border-line bg-white p-6 sm:p-9 lg:col-span-6 lg:col-start-7">
+            <AnimatePresence mode="wait" initial={false}>
             {status === "sent" ? (
-              <div role="status" className="py-12 text-center">
+              <m.div
+                key="sent"
+                role="status"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="py-12 text-center"
+              >
                 <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-accent-soft text-accent-deep [&_svg]:size-6">
                   {icons.check}
                 </span>
@@ -61,9 +69,13 @@ export function Contact() {
                   Thanks for reaching out — someone from Avid Tech Services will follow up within
                   24 hours.
                 </p>
-              </div>
+              </m.div>
             ) : (
-              <form onSubmit={onSubmit} noValidate={false}>
+              <m.form
+                key="form"
+                onSubmit={onSubmit}
+                exit={{ opacity: 0, y: -10 }}
+              >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Field id={`${id}-name`} name="name" label="Full name" required>
                     <input
@@ -164,8 +176,9 @@ export function Contact() {
                     </span>
                   ) : null}
                 </p>
-              </form>
+              </m.form>
             )}
+            </AnimatePresence>
           </div>
         </div>
       </Container>

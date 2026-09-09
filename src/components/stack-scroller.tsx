@@ -1,6 +1,7 @@
 "use client";
 
 import { Children, useRef, useState, type ReactNode } from "react";
+import { m } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -82,6 +83,7 @@ export function StackScroller({
                 key={tab.id}
                 type="button"
                 role="tab"
+                id={`stack-tab-${tab.id}`}
                 aria-selected={selected}
                 aria-controls={`stack-panel-${tab.id}`}
                 onClick={() => setIndex(i)}
@@ -104,10 +106,26 @@ export function StackScroller({
           <div
             role="tabpanel"
             id={`stack-panel-${active.id}`}
+            aria-labelledby={`stack-tab-${active.id}`}
             className="lg:col-span-7 lg:col-start-6"
           >
-            <div key={active.id} className="animate-panel">
-              {panels[index]}
+            {/* Every panel occupies the same grid cell, so the container is as
+                tall as the tallest one and never reflows as categories change.
+                A panel that mounts and unmounts would resize the pinned element
+                mid-scrub and invalidate ScrollTrigger's measurements. */}
+            <div className="grid">
+              {panels.map((panel, i) => (
+                <m.div
+                  key={tabs[i]?.id ?? i}
+                  className="[grid-area:1/1]"
+                  animate={{ opacity: i === index ? 1 : 0, y: i === index ? 0 : 10 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  aria-hidden={i !== index}
+                  inert={i !== index}
+                >
+                  {panel}
+                </m.div>
+              ))}
             </div>
           </div>
         ) : null}

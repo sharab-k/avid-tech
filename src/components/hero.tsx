@@ -22,15 +22,10 @@ export function Hero() {
         aria-hidden="true"
         className="absolute inset-0 bg-[linear-gradient(100deg,#0b0e15_0%,#0b0e15_34%,rgb(11_14_21/0.88)_56%,rgb(11_14_21/0.55)_100%)]"
       />
-      <div
-        aria-hidden="true"
-        className="absolute inset-y-0 left-0 w-px bg-accent/70 lg:left-[calc(50%-590px+2rem)]"
-      />
-
       <div className="relative mx-auto grid w-full max-w-[1180px] gap-14 px-5 pt-20 pb-20 sm:px-8 lg:grid-cols-12 lg:items-center lg:pt-28 lg:pb-28">
         <div className="lg:col-span-7">
           <span data-hero-item className="eyebrow eyebrow-dark">{hero.eyebrow}</span>
-          <h1 data-hero-item className="display mt-5 text-[clamp(2.25rem,1.2rem+4.2vw,3.75rem)]">
+          <h1 data-hero-item data-lines className="display mt-5 text-[clamp(2.25rem,1.2rem+4.2vw,3.75rem)]">
             {hero.headline.before}
             <em className="not-italic text-magenta">{hero.headline.accent}</em>
             {hero.headline.after}

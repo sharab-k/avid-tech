@@ -43,7 +43,8 @@ export function Services() {
 
         {/* Hairline grid rather than nine free-floating cards: one shared rule
             system, so the section reads as a single table of capability. */}
-        <ul data-rise-group className="mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+        <div data-rule className="mt-14 h-px origin-left bg-line" />
+        <ul data-rise-group className="grid sm:grid-cols-2 lg:grid-cols-3">
           {services.items.map((s, i) => (
             <li
               key={s.title}
@@ -86,7 +87,8 @@ export function Industries() {
           side={industries.side}
         />
 
-        <ul data-rise-group className="mt-14 grid gap-x-12 border-t border-line md:grid-cols-2">
+        <div data-rule className="mt-14 h-px origin-left bg-line" />
+        <ul data-rise-group className="grid gap-x-12 md:grid-cols-2">
           {industries.items.map((ind, i) => (
             <li
               key={ind.name}
@@ -266,7 +268,8 @@ export function Why() {
     <Section tone="dim">
       <Container>
         <SectionHead eyebrow={why.eyebrow} title={why.title} side={why.side} />
-        <ul data-rise-group className="mt-14 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+        <div data-rule className="mt-14 h-px origin-left bg-line" />
+        <ul data-rise-group className="grid sm:grid-cols-2 lg:grid-cols-4">
           {why.items.map((w, i) => (
             <li
               key={w.title}

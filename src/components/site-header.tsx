@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AnimatePresence, m } from "motion/react";
 import { nav, site } from "@/content/site";
 import { Mark } from "./icons";
 
@@ -80,12 +81,17 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div
-        id="mobile-nav"
-        hidden={!open}
-        className="border-t border-line bg-paper lg:hidden"
-      >
-        <nav aria-label="Mobile" className="px-5 py-3 sm:px-8">
+      <AnimatePresence initial={false}>
+        {open ? (
+          <m.div
+            id="mobile-nav"
+            key="mobile-nav"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden border-t border-line bg-paper lg:hidden"
+          >
+            <nav aria-label="Mobile" className="px-5 py-3 sm:px-8">
           {nav.map((item) => (
             <a
               key={item.href}
@@ -96,15 +102,17 @@ export function SiteHeader() {
               {item.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="btn btn-primary mt-4 mb-2 w-full"
-          >
-            Get in Touch
-          </a>
-        </nav>
-      </div>
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="btn btn-primary mt-4 mb-2 w-full"
+              >
+                Get in Touch
+              </a>
+            </nav>
+          </m.div>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }
