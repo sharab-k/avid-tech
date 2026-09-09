@@ -43,7 +43,16 @@ export function Contact() {
                     {icons[p.icon]}
                   </span>
                   <div>
-                    <div className="text-sm font-semibold">{p.title}</div>
+                    {p.icon === "mail" ? (
+                      <a
+                        href={`mailto:${p.title}`}
+                        className="text-sm font-semibold text-accent-deep hover:underline"
+                      >
+                        {p.title}
+                      </a>
+                    ) : (
+                      <div className="text-sm font-semibold">{p.title}</div>
+                    )}
                     <div className="mt-0.5 text-[13px] leading-relaxed text-ink-soft">{p.body}</div>
                   </div>
                 </li>

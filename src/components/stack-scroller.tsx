@@ -20,14 +20,15 @@ const STEP_VH = 45;
 export function StackScroller({
   head,
   tabs,
+  cta,
   children,
 }: {
   head: ReactNode;
   tabs: { id: string; label: string }[];
+  cta: ReactNode;
   children: ReactNode;
 }) {
   const [index, setIndex] = useState(0);
-  const [pinned, setPinned] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   const panels = Children.toArray(children);
   const active = tabs[index];
@@ -36,9 +37,10 @@ export function StackScroller({
     () => {
       const mm = gsap.matchMedia();
 
-      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+      mm.add(
+        "(min-width: 1024px) and (min-height: 780px) and (prefers-reduced-motion: no-preference)",
+        () => {
         gsap.registerPlugin(ScrollTrigger);
-        setPinned(true);
 
         const trigger = ScrollTrigger.create({
           trigger: root.current,
@@ -53,12 +55,12 @@ export function StackScroller({
           },
         });
 
-        return () => {
-          trigger.kill();
-          setPinned(false);
-          setIndex(0);
-        };
-      });
+          return () => {
+            trigger.kill();
+            setIndex(0);
+          };
+        },
+      );
 
       return () => mm.revert();
     },
@@ -87,7 +89,7 @@ export function StackScroller({
                 aria-selected={selected}
                 aria-controls={`stack-panel-${tab.id}`}
                 onClick={() => setIndex(i)}
-                className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-semibold whitespace-nowrap transition-colors duration-300 lg:w-full lg:rounded-none lg:border-x-0 lg:border-b-0 lg:border-t lg:border-l-2 lg:py-4 lg:pl-4 lg:text-left lg:text-[15px] lg:last:border-b ${
+                className={`shrink-0 rounded-full border px-4 py-2 text-[13px] font-semibold whitespace-nowrap transition-colors duration-300 lg:w-full lg:rounded-none lg:border-x-0 lg:border-b-0 lg:border-t lg:border-l-2 lg:py-4 lg:pl-4 lg:text-left lg:text-[15px] ${
                   selected
                     ? "border-accent bg-accent text-ink lg:border-t-white/10 lg:border-l-accent lg:bg-transparent lg:text-accent"
                     : "border-white/10 text-white/55 hover:text-white lg:border-l-transparent"
@@ -127,18 +129,14 @@ export function StackScroller({
                 </m.div>
               ))}
             </div>
+
+            {/* Sits directly under the tiles rather than below the whole
+                section: the tab rail is far taller than any icon grid, and the
+                card left in that gap read as a hole in the layout. */}
+            <div className="mt-10">{cta}</div>
           </div>
         ) : null}
       </div>
-
-      {pinned ? (
-        <div aria-hidden="true" className="mt-10 hidden h-px bg-white/10 lg:block">
-          <div
-            className="h-px bg-accent transition-[width] duration-300 ease-out"
-            style={{ width: `${((index + 1) / tabs.length) * 100}%` }}
-          />
-        </div>
-      ) : null}
     </div>
   );
 }

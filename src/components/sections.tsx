@@ -264,7 +264,7 @@ export function Why() {
           {why.items.map((w, i) => (
             <li
               key={w.title}
-              className="border-b border-line py-7 last:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:[&:nth-last-child(-n+4)]:border-b-0 lg:last:border-r-0 lg:last:pr-0"
+              className="border-b border-line py-7 last:border-b-0 sm:px-6 sm:first:pl-0 sm:[&:nth-child(2n+1)]:border-r sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:px-7 lg:[&:not(:last-child)]:border-r lg:last:pr-0"
             >
               <span className="num font-display text-[13px] font-medium text-accent-deep">
                 {String(i + 1).padStart(2, "0")}

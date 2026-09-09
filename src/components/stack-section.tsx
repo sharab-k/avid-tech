@@ -44,10 +44,52 @@ export function StackSection() {
     </div>
   );
 
+  const cta = (
+    <div className="rounded-lg bg-paper p-7 text-ink sm:p-8">
+      <div className="flex items-center gap-5">
+        <span className="num font-display text-[46px] leading-none font-semibold tracking-[-0.04em] text-accent-deep">
+          {stack.ctaCount}
+          <span className="text-ink/25">+</span>
+        </span>
+        <p className="max-w-[24ch] text-sm leading-snug text-ink-soft">{stack.ctaCopy}</p>
+      </div>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <a href="#contact" className="btn btn-ink">
+          Get in touch
+          {icons.arrowUpRight}
+        </a>
+        <a href="#contact" className="btn btn-ghost-light">
+          Book a meeting
+          {icons.calendar}
+        </a>
+      </div>
+      <ul
+        aria-hidden="true"
+        className="edge-fade no-scrollbar mt-7 flex items-center gap-6 overflow-x-auto"
+      >
+        {tickerIcons.map((t) => (
+          <li
+            key={t.name}
+            className={
+              t.featured
+                ? "flex size-14 shrink-0 items-center justify-center rounded-md border-4 border-white bg-ink shadow-[0_10px_24px_rgb(0_0_0/0.18)] [&_svg]:size-7"
+                : "flex size-6 shrink-0 items-center justify-center opacity-35 [&_svg]:size-full"
+            }
+            dangerouslySetInnerHTML={{ __html: t.svg }}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
     <Section id="stack" tone="dark">
       <Container>
-        <StackScroller head={head} tabs={stackGroups.map(({ id, label }) => ({ id, label }))}>
+        <StackScroller
+          head={head}
+          cta={cta}
+          tabs={stackGroups.map(({ id, label }) => ({ id, label }))}
+        >
           {stackGroups.map((group) => (
             <ul key={group.id} className="grid grid-cols-4 gap-3 sm:grid-cols-6 sm:gap-4">
               {group.icons.map((icon) => (
@@ -57,47 +99,6 @@ export function StackSection() {
           ))}
         </StackScroller>
 
-        <div
-          data-rise
-          className="mt-20 grid items-center gap-8 rounded-lg bg-paper p-8 text-ink sm:p-10 lg:grid-cols-12"
-        >
-          <div className="lg:col-span-6">
-            <div className="flex items-center gap-5">
-              <span className="num font-display text-[52px] leading-none font-semibold tracking-[-0.04em] text-accent-deep">
-                {stack.ctaCount}
-                <span className="text-ink/25">+</span>
-              </span>
-              <p className="max-w-[22ch] text-sm leading-snug text-ink-soft">{stack.ctaCopy}</p>
-            </div>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#contact" className="btn btn-ink">
-                Get in touch
-                {icons.arrowUpRight}
-              </a>
-              <a href="#contact" className="btn btn-ghost-light">
-                Book a meeting
-                {icons.calendar}
-              </a>
-            </div>
-          </div>
-
-          <ul
-            aria-hidden="true"
-            className="edge-fade no-scrollbar flex items-center gap-6 overflow-x-auto lg:col-span-5 lg:col-start-8 lg:justify-end"
-          >
-            {tickerIcons.map((t) => (
-              <li
-                key={t.name}
-                className={
-                  t.featured
-                    ? "flex size-16 shrink-0 items-center justify-center rounded-md border-4 border-white bg-ink shadow-[0_10px_24px_rgb(0_0_0/0.18)] [&_svg]:size-8"
-                    : "flex size-7 shrink-0 items-center justify-center opacity-35 [&_svg]:size-full"
-                }
-                dangerouslySetInnerHTML={{ __html: t.svg }}
-              />
-            ))}
-          </ul>
-        </div>
       </Container>
     </Section>
   );
