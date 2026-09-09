@@ -15,8 +15,8 @@
   --color-line-soft: rgb(11 14 21 / 0.07);
   --color-line-dark: rgb(255 255 255 / 0.1);
 
-  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-google-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-google-sans), ui-sans-serif, system-ui, sans-serif;
 
   --radius-xs: 6px;
   --radius-sm: 10px;

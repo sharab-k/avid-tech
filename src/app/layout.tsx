@@ -1,19 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import { site } from "@/content/site";
 import "./globals.css";
 
 /**
- * Product Sans is Google's proprietary corporate typeface — not on Google Fonts
- * and not licensed for third-party use. Outfit is the closest openly licensed
- * match: the same geometric construction and single-storey "a". It now sets
- * both display and body so the whole page reads in one voice.
+ * Google Sans — the size-optimised derivative of Product Sans that Google
+ * released under the SIL Open Font License on 2025-12-10. Product Sans itself
+ * stays proprietary, so this is the authentic form of that design we can
+ * actually ship.
+ *
+ * Self-hosted rather than pulled from next/font/google: the font list bundled
+ * with Next 15.5 predates the release and has no entry for the family. Latin
+ * subset only, variable across 400-700. OFL.txt sits beside the file because
+ * the licence requires the notice to travel with the font.
  */
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
+const googleSans = localFont({
+  src: "./fonts/GoogleSans-Variable.woff2",
+  weight: "400 700",
+  style: "normal",
+  variable: "--font-google-sans",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -57,7 +63,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={outfit.variable}>
+    <html lang="en" className={googleSans.variable}>
       <body>
         {/* Runs before the page below it paints. The class it sets is what
             hides the animated elements, so it also schedules its own removal:
