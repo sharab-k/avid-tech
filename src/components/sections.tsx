@@ -50,7 +50,7 @@ export function Services() {
               as="li"
               key={s.title}
               delay={i * 40}
-              className="group relative border-b border-line px-0 py-7 transition-colors sm:px-6 sm:odd:border-r lg:px-7 lg:odd:border-r-0 lg:[&:not(:nth-child(3n))]:border-r"
+              className="group relative border-b border-line py-7 sm:border-r sm:px-6 sm:[&:nth-child(2n)]:border-r-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0"
             >
               <span className="num absolute top-7 right-0 text-[11px] font-medium text-ink-soft/40 sm:right-6 lg:right-7">
                 {String(i + 1).padStart(2, "0")}
@@ -282,7 +282,7 @@ export function Why() {
               as="li"
               key={w.title}
               delay={i * 60}
-              className="border-b border-line py-7 sm:px-6 sm:first:pl-0 sm:[&:not(:last-child)]:border-r lg:px-7 lg:last:pr-0"
+              className="border-b border-line py-7 sm:border-r sm:px-6 sm:first:pl-0 sm:[&:nth-child(2n)]:border-r-0 lg:px-7 lg:[&:nth-child(2n)]:border-r lg:last:border-r-0 lg:last:pr-0"
             >
               <span className="num font-display text-[13px] font-medium text-accent-deep">
                 {String(i + 1).padStart(2, "0")}

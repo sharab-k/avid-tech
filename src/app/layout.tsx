@@ -58,11 +58,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
-      <head>
-        {/* Runs before first paint: entrance animations only exist when JS does. */}
-        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add("js")` }} />
-      </head>
       <body>
+        {/* Runs before the page below it paints: entrance animations only
+            exist when JS does, so no-JS readers get the content outright. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add("js")` }}
+        />
         <a
           href="#main"
           className="btn btn-ink sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100]"
