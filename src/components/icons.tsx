@@ -107,7 +107,14 @@ export function Icon({ name, className }: { name: IconName; className?: string }
   return <span className={className}>{icons[name]}</span>;
 }
 
-export function Wordmark({ className }: { className?: string }) {
+/**
+ * An "A" whose legs are one mitred stroke and whose crossbar floats free of
+ * both of them. The crossbar is the accent piece, and it is the part that turns
+ * a bare chevron into a letter — the company's pitch is that it supplies the
+ * piece a running team is missing. The float closes up below ~20px, which is
+ * the intended degradation: the mark still reads as an A at favicon size.
+ */
+export function Mark({ className, mono = false }: { className?: string; mono?: boolean }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -117,11 +124,18 @@ export function Wordmark({ className }: { className?: string }) {
       focusable="false"
     >
       <path
-        d="M4 12L10 18L20 6"
+        d="M4.5 20 12 4.5 19.5 20"
+        stroke="currentColor"
+        strokeWidth={2.4}
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+      />
+      <path
+        d="M9.7 15h4.6"
         stroke="currentColor"
         strokeWidth={2.6}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        strokeLinecap="square"
+        className={mono ? undefined : "text-accent"}
       />
     </svg>
   );

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { nav, site } from "@/content/site";
-import { Wordmark } from "./icons";
+import { Mark } from "./icons";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -32,8 +32,8 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 py-4 sm:px-8">
         <a href="#top" className="flex items-center gap-2.5" aria-label={`${site.name} home`}>
-          <span className="flex size-7 shrink-0 items-center justify-center rounded-[8px] bg-ink text-accent">
-            <Wordmark className="size-4" />
+          <span className="flex size-7 shrink-0 items-center justify-center rounded-[8px] bg-ink text-white">
+            <Mark className="size-[18px]" />
           </span>
           <span className="font-display text-[17px] font-semibold tracking-[-0.02em]">
             <span className="text-accent-deep">Avid</span> Tech Services

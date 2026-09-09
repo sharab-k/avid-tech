@@ -1,7 +1,7 @@
 import { footer } from "@/content/sections";
 import { site } from "@/content/site";
 import { Container } from "./section";
-import { Wordmark } from "./icons";
+import { Mark } from "./icons";
 
 export function SiteFooter() {
   return (
@@ -10,8 +10,8 @@ export function SiteFooter() {
         <div className="grid gap-10 border-b border-white/10 pb-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <a href="#top" className="flex items-center gap-2.5 text-white">
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-[8px] bg-white/10 text-accent">
-                <Wordmark className="size-4" />
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-[8px] bg-white/10 text-white">
+                <Mark className="size-[18px]" />
               </span>
               <span className="font-display text-[17px] font-semibold tracking-[-0.02em]">
                 <span className="text-accent">Avid</span> Tech Services
