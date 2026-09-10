@@ -46,8 +46,8 @@ export function StackSection() {
 
   const cta = (
     <div className="rounded-lg bg-paper p-7 text-ink sm:p-8">
-      <div className="flex items-center gap-5">
-        <span className="num font-display text-[46px] leading-none font-semibold tracking-[-0.04em] text-accent-deep">
+      <div className="flex items-center gap-4 sm:gap-5">
+        <span className="num font-display text-[38px] leading-none font-semibold tracking-[-0.04em] text-accent-deep sm:text-[46px]">
           {stack.ctaCount}
           <span className="text-ink/25">+</span>
         </span>

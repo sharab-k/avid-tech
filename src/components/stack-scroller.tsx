@@ -71,12 +71,12 @@ export function StackScroller({
     <div ref={root}>
       {head}
 
-      <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14">
+      <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
         <div
           role="tablist"
           aria-label="Technology categories"
           aria-orientation="vertical"
-          className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 sm:mx-0 sm:px-0 lg:col-span-4 lg:flex-col lg:gap-0 lg:overflow-visible"
+          className="no-scrollbar -mx-5 flex min-w-0 gap-2 overflow-x-auto px-5 sm:mx-0 sm:px-0 lg:col-span-4 lg:flex-col lg:gap-0 lg:overflow-visible"
         >
           {tabs.map((tab, i) => {
             const selected = i === index;
@@ -109,7 +109,7 @@ export function StackScroller({
             role="tabpanel"
             id={`stack-panel-${active.id}`}
             aria-labelledby={`stack-tab-${active.id}`}
-            className="lg:col-span-7 lg:col-start-6"
+            className="min-w-0 lg:col-span-7 lg:col-start-6"
           >
             {/* Every panel occupies the same grid cell, so the container is as
                 tall as the tallest one and never reflows as categories change.
