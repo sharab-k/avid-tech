@@ -25,12 +25,16 @@ export function Hero() {
       <div className="relative mx-auto grid w-full max-w-[1180px] gap-14 px-5 pt-20 pb-20 sm:px-8 lg:grid-cols-12 lg:items-center lg:pt-28 lg:pb-28">
         <div className="lg:col-span-7">
           <span data-hero-item className="eyebrow eyebrow-dark">{hero.eyebrow}</span>
-          <h1 data-hero-item data-lines className="display mt-5 text-[clamp(2.25rem,1.2rem+4.2vw,3.75rem)]">
+          <h1
+            data-hero-item
+            data-lines
+            className="display mt-5 text-[clamp(2.25rem,1.2rem+4.2vw,3.75rem)] leading-[1.12] sm:leading-[1.04]"
+          >
             {hero.headline.before}
             <em className="not-italic text-magenta">{hero.headline.accent}</em>
             {hero.headline.after}
           </h1>
-          <p data-hero-item className="mt-6 max-w-[46ch] text-[16.5px] leading-[1.65] text-white/65">
+          <p data-hero-item className="mt-10 max-w-[46ch] text-[16.5px] leading-[1.65] text-white/65 sm:mt-9">
             {hero.lead}
           </p>
 
